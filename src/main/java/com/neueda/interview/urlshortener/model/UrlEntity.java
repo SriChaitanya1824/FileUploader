@@ -1,8 +1,6 @@
 package com.neueda.interview.urlshortener.model;
 
-import org.springframework.context.annotation.ComponentScan;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity(name = "url")
 @Table(name = "url")

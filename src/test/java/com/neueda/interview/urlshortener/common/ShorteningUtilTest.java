@@ -1,17 +1,16 @@
 package com.neueda.interview.urlshortener.common;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.Test;
 
-@RunWith(MockitoJUnitRunner.class)
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 public class ShorteningUtilTest {
     @Test
     public void shouldConvertMaxLongToShortString() {
         String maxIdShortString = ShorteningUtil.idToStr(Long.MAX_VALUE);
-        Assert.assertNotNull(maxIdShortString);
-        Assert.assertNotEquals(maxIdShortString, "");
+        assertNotNull(maxIdShortString);
+        assertNotEquals(maxIdShortString, "");
     }
 
     @Test

@@ -6,7 +6,6 @@ import com.neueda.interview.urlshortener.error.InvalidUrlError;
 import com.neueda.interview.urlshortener.dto.FullUrl;
 import com.neueda.interview.urlshortener.service.UrlService;
 import org.apache.commons.validator.routines.UrlValidator;
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.NoSuchElementException;

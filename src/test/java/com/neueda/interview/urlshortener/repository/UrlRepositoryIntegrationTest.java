@@ -1,23 +1,15 @@
 package com.neueda.interview.urlshortener.repository;
 
 import com.neueda.interview.urlshortener.model.UrlEntity;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@RunWith(SpringRunner.class)
 @DataJpaTest
 public class UrlRepositoryIntegrationTest {
-
-    @Autowired
-    private TestEntityManager entityManager;
 
     @Autowired
     private UrlRepository urlRepository;
@@ -27,10 +19,10 @@ public class UrlRepositoryIntegrationTest {
         UrlEntity urlEntity = new UrlEntity("http://example.com");
         urlRepository.save(urlEntity);
 
-        assertThat(urlEntity.getId(), notNullValue());
+        assertNotNull(urlEntity.getId());
 
         UrlEntity urlEntityFromDb = urlRepository.findById(urlEntity.getId()).get();
-        assertThat(urlEntityFromDb.getId(), equalTo(urlEntity.getId()));
+        assertEquals(urlEntity.getId(), urlEntityFromDb.getId());
     }
 
 }

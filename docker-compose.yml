@@ -6,13 +6,16 @@ services:
       context: .
       dockerfile: api.Dockerfile
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqlurldb:3306/urldb
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqlurldb:3306/urldb?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=pa55w0rd
     ports:
       - "8080:8080"
     networks:
       - urlshortener-mysql-network
     depends_on:
-      - api-db
+      api-db:
+        condition: service_healthy
 
   api-db:
     container_name: mysqlurldb
@@ -28,6 +31,11 @@ services:
       - MYSQL_PASSWORD=123456
     ports:
       - '3306:3306'
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ppa55w0rd"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
 networks:
   urlshortener-mysql-network:
