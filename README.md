@@ -83,51 +83,5 @@ cd complete
 
 Open `http://localhost:8080` (or configured port) to see the upload form.
 
-## Configuration
 
-Configuration lives in `complete/src/main/resources/application.properties`.
-Key properties to review or override:
-- `storage.location` — directory where uploaded files are persisted
-- Spring multipart properties (e.g., `spring.servlet.multipart.max-file-size`) — to control upload limits
 
-You can pass overrides as environment variables or JVM args, e.g.:
-
-```bash
-java -jar build/libs/app.jar --storage.location=/data/uploads
-```
-
-## Tests
-
-Unit and integration tests are present under `complete/src/test/`.
-Run tests with Gradle or Maven:
-
-```bash
-cd complete
-./gradlew test
-```
-or
-```bash
-cd complete
-./mvnw test
-```
-
-## Troubleshooting
-- If uploads fail with IO errors, verify `storage.location` exists and the process has write permissions.
-- If multipart requests are rejected, confirm `spring.servlet.multipart.max-file-size` and `max-request-size` are set large enough.
-
-## Deployment
-- Package as a jar and deploy to any JVM hostable environment. Consider containerizing with a small Dockerfile and mounting the storage directory as a volume.
-
-## Next steps / Improvements
-- Add authentication/authorization to limit who can upload.
-- Add rate limiting and request throttling.
-- Replace filesystem storage with cloud object storage for scalability.
-- Add metadata persistence (DB) for richer query and lifecycle management.
-
-## Where to look in the code
-- Upload controller: `complete/src/main/java/com/example/uploadingfiles/FileUploadController.java`
-- Storage implementation: `complete/src/main/java/com/example/uploadingfiles/storage/FileSystemStorageService.java`
-- Tests: `complete/src/test/java/com/example/uploadingfiles`
-
----
-If you'd like, I can: update README with a diagram image, generate a Dockerfile, or add a cloud storage implementation example. What would you like next?
